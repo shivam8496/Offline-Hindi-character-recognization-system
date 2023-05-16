@@ -1,17 +1,12 @@
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-from tensorflow import keras
 import tensorflow as tf
-from sklearn.model_selection import train_test_split
 import os
 import cv2
 import pickle
-# from train_model import Testing
-# from train_model import files
 
 
-path = "..\DataSets\\Test\\"
+path = "C:\ZZZZZ IDHAR\Character-Recognization-System\DataSets\\Test\\"
 files = os.listdir(path)[:]
 classes1=[0,1,2,3,4,5,6,7,8,9]
 classes=dict(zip(files,classes1))
