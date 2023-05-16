@@ -9,12 +9,15 @@ import cv2
 import pickle
 
 # Importing Datasets 
-path = "C:\\ZZZZZ IDHAR\\Character-Recognization-System\\DataSets"
+path = "..\DataSets\Train\\"
 files = os.listdir(path)[:]
 classes1=[0,1,2,3,4,5,6,7,8,9]
 classes=dict(zip(files,classes1))
 print("Files ==>",files,"\n")
 print("Classes ==>",classes)
+
+def files():
+    return files
 
 # Preparing the dataset
 X_train=[]
@@ -27,18 +30,18 @@ for cl in classes:
         Y_train.append(classes[cl])
 pd.Series(Y_train).value_counts()
 
-#Splitting the dataset into Training set And Testing set  Using Train and test split function 
-X_train, X_test, Y_train, Y_test= train_test_split(X_train,Y_train,test_size=.20,random_state=42)
+
 
 # Converting the  lists into Array using Numpy 
+
 X_train= np.array(X_train)
 Y_train= np.array(Y_train)
-Y_test=np.array(Y_test)
-Y_train= np.array(Y_train)
+
+
 
 # Normalizaing the Datasets  For better efficiency
 X_train=tf.keras.utils.normalize(X_train,axis=1)
-X_test=tf.keras.utils.normalize(X_test,axis=1)
+
 
 # Creating the Model 
 model = keras.Sequential()
@@ -59,10 +62,3 @@ with open("neuralmodel.pickle","wb") as f:
 
 
 # Predicting the data from  the testing Dataset 
-prdictions = model.predict(X_test)
-for i in range(0,10):
-    plt.grid(False)
-    plt.imshow(X_test[i],cmap=plt.cm.binary)
-    plt.xlabel("Actual: " + files[Y_test[i]])
-    plt.title("Predicted: "+ files[np.argmax(prdictions[i])])
-    plt.show()
