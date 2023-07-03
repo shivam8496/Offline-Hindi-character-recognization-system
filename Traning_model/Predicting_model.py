@@ -32,10 +32,15 @@ pickle_in = open("neuralmodel.pickle" ,"rb")
 
 model = pickle.load(pickle_in)
 
+img=cv2.imread("C:\\Users\\shiva\\OneDrive\\Desktop\\Untitled.png",0)
 
+X_test[0]=img
+X_test[0]=tf.keras.utils.normalize(X_test[0],axis=1)
+# print(X_test[0].shape)
 
 prdictions = model.predict(X_test)
-for i in range(0,10):
+
+for i in range(0,3000,120):
     plt.grid(False)
     plt.imshow(X_test[i],cmap=plt.cm.binary)
     plt.xlabel("Actual: " + files[Y_test[i]])
